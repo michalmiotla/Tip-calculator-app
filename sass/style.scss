@@ -30,7 +30,10 @@ body {
 
 .work-title {
 	position: relative;
-	top: -200px;
+	top: -350px;
+	color: $veryDarkCyan;
+	letter-spacing: 10px;
+	font-size: 1.2rem;
 }
 
 .title {
@@ -38,11 +41,31 @@ body {
 	letter-spacing: -0.5px;
 }
 
+.input,
+.button {
+	font-family: 'Space Mono', monospace;
+}
+
+.input {
+	text-align: right;
+	padding: 0.4em;
+	font-size: 2.4rem;
+	font-weight: bold;
+	color: $veryDarkCyan;
+	width: 100%;
+	background-color: $veryLightGrayishCyan;
+	border: none;
+}
+
+.input::placeholder {
+	color: $grayishCyan;
+}
+
 .wrapper {
 	position: absolute;
 	top: 50%;
 	left: 50%;
-	transform: translate(-50%, -50%);
+	transform: translate(-50%, -40%);
 	width: 100%;
 	min-width: 375px;
 	max-width: 850px;
@@ -51,24 +74,12 @@ body {
 	justify-content: center;
 	align-items: center;
 	flex-direction: column;
-	border-top-left-radius: 20px;
-	border-top-right-radius: 20px;
+	border-radius: 20px;
 	background-color: $white;
 
 	.options {
 		&__bill {
 			margin-bottom: 2em;
-
-			&-input {
-				text-align: right;
-				padding: 0.5em;
-				font-size: 2.4rem;
-				font-weight: bold;
-				color: $veryDarkCyan;
-				width: 100%;
-				background-color: $veryLightGrayishCyan;
-				border: none;
-			}
 		}
 
 		&__tip {
@@ -83,23 +94,154 @@ body {
 				flex-wrap: wrap;
 				width: 100%;
 
-				&-value, &-input {
-                    font-family: 'Space Mono', monospace;
+				&-value,
+				&-input {
+					font-family: 'Space Mono', monospace;
 					width: 6em;
-					margin: 0.5em 0.5em 0.5em 0;
-                    padding: 0.3em 0;
-                    border-radius: 5px;
+					margin: 0.3em 0.3em 0.3em 0;
+					padding: 0.3em 0;
+					border-radius: 5px;
 					border: none;
 					cursor: pointer;
 					background-color: $veryDarkCyan;
 					color: $white;
-                    font-size: 2.4rem;
+					font-size: 2.3rem;
 				}
 
-                &-input {
-                    text-align: right;
-                    background-color: $veryLightGrayishCyan;
-                }
+				&-input {
+					text-align: right;
+					background-color: $veryLightGrayishCyan;
+				}
+			}
+		}
+
+		&__people {
+			margin-bottom: 1em;
+		}
+	}
+
+	.amount {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		flex-direction: column;
+		width: 100%;
+		padding: 1.5em;
+		background-color: $veryDarkCyan;
+		border-radius: 15px;
+
+		&__tip,
+		&__total {
+			padding-top: 1em;
+			padding-bottom: 0.5em;
+			width: 100%;
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+
+			&-title {
+				color: $white;
+
+				span {
+					font-size: 1.2rem;
+					color: $darkGrayishCyan;
+				}
+			}
+
+			&-value {
+				font-size: 3rem;
+				color: $strongCyan;
+			}
+		}
+
+		&__reset-btn {
+			margin-top: 1em;
+			padding: 0.4em;
+			width: 100%;
+			background-color: $strongCyan;
+			border: none;
+			cursor: pointer;
+			font-size: 2rem;
+			color: $veryDarkCyan;
+			text-transform: uppercase;
+			font-weight: bold;
+			border-radius: 5px;
+		}
+
+		&__reset-btn:disabled {
+			background-color: rgb(13, 104, 109);
+			cursor: default;
+		}
+	}
+}
+
+@media (min-width: 768px) {
+	.work-title {
+		top: -300px;
+	}
+
+	.wrapper {
+		flex-direction: row;
+		padding: 2em;
+
+		.options {
+			width: 50%;
+			padding: 1em;
+
+			&__tip {
+				&-div {
+					&-value,
+					&-input {
+						width: 4.5em;
+					}
+
+					&-input {
+						text-align: right;
+						background-color: $veryLightGrayishCyan;
+					}
+				}
+			}
+
+			&__people {
+				margin-bottom: 1em;
+			}
+		}
+
+		.amount {
+			margin-left: 1.5em;
+			padding: 2.5em;
+			width: 50%;
+
+			&__tip,
+			&__total {
+				padding-top: 0;
+				padding-bottom: 2em;
+
+				&-title {
+					span {
+						font-size: 1.2rem;
+						color: $darkGrayishCyan;
+					}
+				}
+
+				&-value {
+					font-size: 4rem;
+					color: $strongCyan;
+				}
+			}
+
+			&__reset-btn {
+				margin-top: 4em;
+				padding: 0.4em;
+				width: 100%;
+				background-color: $strongCyan;
+				border: none;
+				cursor: pointer;
+				font-size: 2rem;
+				color: $veryDarkCyan;
+				text-transform: uppercase;
+				font-weight: bold;
+				border-radius: 5px;
 			}
 		}
 	}

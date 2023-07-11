@@ -22,7 +22,10 @@ body {
 
 .work-title {
   position: relative;
-  top: -200px;
+  top: -350px;
+  color: hsl(183, 100%, 15%);
+  letter-spacing: 10px;
+  font-size: 1.2rem;
 }
 
 .title {
@@ -30,11 +33,35 @@ body {
   letter-spacing: -0.5px;
 }
 
+.input,
+.button {
+  font-family: "Space Mono", monospace;
+}
+
+.input {
+  text-align: right;
+  padding: 0.4em;
+  font-size: 2.4rem;
+  font-weight: bold;
+  color: hsl(183, 100%, 15%);
+  width: 100%;
+  background-color: hsl(189, 41%, 97%);
+  border: none;
+}
+
+.input::-moz-placeholder {
+  color: hsl(184, 14%, 56%);
+}
+
+.input::placeholder {
+  color: hsl(184, 14%, 56%);
+}
+
 .wrapper {
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%);
+  transform: translate(-50%, -40%);
   width: 100%;
   min-width: 375px;
   max-width: 850px;
@@ -43,22 +70,11 @@ body {
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  border-top-left-radius: 20px;
-  border-top-right-radius: 20px;
+  border-radius: 20px;
   background-color: hsl(0, 0%, 100%);
 }
 .wrapper .options__bill {
   margin-bottom: 2em;
-}
-.wrapper .options__bill-input {
-  text-align: right;
-  padding: 0.5em;
-  font-size: 2.4rem;
-  font-weight: bold;
-  color: hsl(183, 100%, 15%);
-  width: 100%;
-  background-color: hsl(189, 41%, 97%);
-  border: none;
 }
 .wrapper .options__tip {
   display: flex;
@@ -75,16 +91,119 @@ body {
 .wrapper .options__tip-div-value, .wrapper .options__tip-div-input {
   font-family: "Space Mono", monospace;
   width: 6em;
-  margin: 0.5em 0.5em 0.5em 0;
+  margin: 0.3em 0.3em 0.3em 0;
   padding: 0.3em 0;
   border-radius: 5px;
   border: none;
   cursor: pointer;
   background-color: hsl(183, 100%, 15%);
   color: hsl(0, 0%, 100%);
-  font-size: 2.4rem;
+  font-size: 2.3rem;
 }
 .wrapper .options__tip-div-input {
   text-align: right;
   background-color: hsl(189, 41%, 97%);
+}
+.wrapper .options__people {
+  margin-bottom: 1em;
+}
+.wrapper .amount {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 100%;
+  padding: 1.5em;
+  background-color: hsl(183, 100%, 15%);
+  border-radius: 15px;
+}
+.wrapper .amount__tip, .wrapper .amount__total {
+  padding-top: 1em;
+  padding-bottom: 0.5em;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.wrapper .amount__tip-title, .wrapper .amount__total-title {
+  color: hsl(0, 0%, 100%);
+}
+.wrapper .amount__tip-title span, .wrapper .amount__total-title span {
+  font-size: 1.2rem;
+  color: hsl(186, 14%, 43%);
+}
+.wrapper .amount__tip-value, .wrapper .amount__total-value {
+  font-size: 3rem;
+  color: hsl(172, 67%, 45%);
+}
+.wrapper .amount__reset-btn {
+  margin-top: 1em;
+  padding: 0.4em;
+  width: 100%;
+  background-color: hsl(172, 67%, 45%);
+  border: none;
+  cursor: pointer;
+  font-size: 2rem;
+  color: hsl(183, 100%, 15%);
+  text-transform: uppercase;
+  font-weight: bold;
+  border-radius: 5px;
+}
+.wrapper .amount__reset-btn:disabled {
+  background-color: rgb(13, 104, 109);
+  cursor: default;
+}
+
+@media (min-width: 768px) {
+  .work-title {
+    top: -300px;
+  }
+  .wrapper {
+    flex-direction: row;
+    padding: 2em;
+  }
+  .wrapper .options {
+    width: 50%;
+    padding: 1em;
+  }
+  .wrapper .options__tip-div-value, .wrapper .options__tip-div-input {
+    width: 4.5em;
+  }
+  .wrapper .options__tip-div-input {
+    text-align: right;
+    background-color: hsl(189, 41%, 97%);
+  }
+  .wrapper .options__people {
+    margin-bottom: 1em;
+  }
+  .wrapper .amount {
+    margin-left: 1.5em;
+    padding: 2.5em;
+    width: 50%;
+  }
+  .wrapper .amount__tip, .wrapper .amount__total {
+    padding-top: 0;
+    padding-bottom: 2em;
+  }
+  .wrapper .amount__tip-title span, .wrapper .amount__total-title span {
+    font-size: 1.2rem;
+    color: hsl(186, 14%, 43%);
+  }
+  .wrapper .amount__tip-value, .wrapper .amount__total-value {
+    font-size: 4rem;
+    color: hsl(172, 67%, 45%);
+  }
+  .wrapper .amount__reset-btn {
+    margin-top: 4em;
+    padding: 0.4em;
+    width: 100%;
+    background-color: hsl(172, 67%, 45%);
+    border: none;
+    cursor: pointer;
+    font-size: 2rem;
+    color: hsl(183, 100%, 15%);
+    text-transform: uppercase;
+    font-weight: bold;
+    border-radius: 5px;
+  }
 }/*# sourceMappingURL=style.css.map */
