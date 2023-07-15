@@ -30,6 +30,11 @@ const checkPeopleInput = () => {
 	}
 }
 
+const checkInputs = () => {
+	checkBillInput()
+	checkPeopleInput()
+}
+
 const countTip = () => {
 	const bill = parseFloat(billInput.value)
 	const select = parseFloat(buttonValue)
@@ -37,6 +42,8 @@ const countTip = () => {
 	const result = ((select * bill) / people).toFixed(2)
 
 	tipValue.textContent = `$${result}`
+
+	// if ((tipValue.textContent = 'NaN')) tipValue.textContent = 'mu'
 }
 
 const countTotal = () => {
@@ -49,12 +56,6 @@ const countTotal = () => {
 }
 
 const showResults = e => {
-
-	billInput.addEventListener('keyup', countTip)
-	billInput.addEventListener('keyup', countTotal)
-	peopleInput.addEventListener('keyup', countTip)
-	peopleInput.addEventListener('keyup', countTotal)
-
 	selectTip.forEach(button => {
 		button.addEventListener('click', event => {
 			buttonValue = event.target.value
@@ -62,6 +63,38 @@ const showResults = e => {
 			countTotal()
 		})
 	})
+
+	billInput.addEventListener('keyup', countTip)
+	peopleInput.addEventListener('keyup', countTip)
+	billInput.addEventListener('keyup', countTotal)
+	peopleInput.addEventListener('keyup', countTotal)
 }
 
-showResults()
+const resetResults = () => {
+	if (
+		parseFloat(billInput.value) == 0 ||
+		parseFloat(peopleInput.value) == 0 ||
+		billInput.value == '' ||
+		peopleInput.value == ''
+	) {
+		resetBtn.setAttribute('disabled', '')
+	} else {
+		resetBtn.removeAttribute('disabled')
+		resetBtn.addEventListener('click', () => {
+			// parseInt(billInput.value) === 0
+		})
+	}
+}
+
+const reset = () => {
+	billInput.value = ''
+	peopleInput.value = ''
+	tipValue.textContent = '$0.00'
+	totalValue.textContent = '$0.00'
+	resetBtn.setAttribute('disabled', '')
+}
+
+window.addEventListener('keyup', checkInputs)
+window.addEventListener('keyup', showResults)
+window.addEventListener('keyup', resetResults)
+resetBtn.addEventListener('click', reset)
