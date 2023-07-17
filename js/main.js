@@ -8,10 +8,9 @@ const tipValue = document.querySelector('.amount__tip-value')
 const totalValue = document.querySelector('.amount__total-value')
 const resetBtn = document.querySelector('.amount__reset-btn')
 let buttonValue
-let customValue
 
 const checkBillInput = () => {
-	if (billInput.value == 0) {
+	if (billInput.value == 0 || billInput.value < 0) {
 		billSpan.textContent = "Can't be zero"
 		billInput.classList.add('error')
 	} else {
@@ -21,18 +20,13 @@ const checkBillInput = () => {
 }
 
 const checkPeopleInput = () => {
-	if (peopleInput.value == 0) {
+	if (peopleInput.value == 0 || peopleInput.value < 0) {
 		peopleSpan.textContent = "Can't be zero"
 		peopleInput.classList.add('error')
 	} else {
 		peopleSpan.textContent = ''
 		peopleInput.classList.remove('error')
 	}
-}
-
-const checkInputs = () => {
-	checkBillInput()
-	checkPeopleInput()
 }
 
 const countTip = () => {
@@ -43,7 +37,9 @@ const countTip = () => {
 
 	tipValue.textContent = `$${result}`
 
-	// if ((tipValue.textContent = 'NaN')) tipValue.textContent = 'mu'
+	if (result < 0) {
+		console.log('ok')
+	}
 }
 
 const countTotal = () => {
@@ -55,46 +51,65 @@ const countTotal = () => {
 	totalValue.textContent = `$${result}`
 }
 
-const showResults = e => {
+const countCustom = () => {
+	const billCustom = parseFloat(billInput.value)
+	const selectCustom = parseFloat(customTip.value) / 100
+	const peopleCustom = parseInt(peopleInput.value)
+	const resultCustomTip = ((selectCustom * billCustom) / peopleCustom).toFixed(2)
+	const resultCustomTotal = ((billCustom + billCustom * selectCustom) / peopleCustom).toFixed(2)
+
+	tipValue.textContent = `$${resultCustomTip}`
+	totalValue.textContent = `$${resultCustomTotal}`
+}
+
+const showResults = () => {
 	selectTip.forEach(button => {
 		button.addEventListener('click', event => {
 			buttonValue = event.target.value
-			countTip()
-			countTotal()
+			checkBillInput()
+			checkPeopleInput()
+			if (billInput.value != 0 && peopleInput.value != 0) {
+				countTip()
+				countTotal()
+			} else {
+				tipValue.textContent = '$0.00'
+				totalValue.textContent = '$0.00'
+			}
 		})
 	})
+}
 
-	billInput.addEventListener('keyup', countTip)
-	peopleInput.addEventListener('keyup', countTip)
-	billInput.addEventListener('keyup', countTotal)
-	peopleInput.addEventListener('keyup', countTotal)
+const showCustom = () => {
+	customTip.addEventListener('click', () => {
+		checkBillInput()
+		checkPeopleInput()
+		if (billInput.value != 0 && peopleInput.value != 0 && customTip.value != 0) {
+			countCustom()
+		} else {
+			tipValue.textContent = '$0.00'
+			totalValue.textContent = '$0.00'
+		}
+	})
 }
 
 const resetResults = () => {
-	if (
-		parseFloat(billInput.value) == 0 ||
-		parseFloat(peopleInput.value) == 0 ||
-		billInput.value == '' ||
-		peopleInput.value == ''
-	) {
+	if (parseFloat(billInput.value) == 0 || parseFloat(peopleInput.value) == 0) {
 		resetBtn.setAttribute('disabled', '')
 	} else {
 		resetBtn.removeAttribute('disabled')
-		resetBtn.addEventListener('click', () => {
-			// parseInt(billInput.value) === 0
-		})
 	}
 }
 
 const reset = () => {
 	billInput.value = ''
 	peopleInput.value = ''
+	customTip.value = ''
 	tipValue.textContent = '$0.00'
 	totalValue.textContent = '$0.00'
 	resetBtn.setAttribute('disabled', '')
 }
 
-window.addEventListener('keyup', checkInputs)
+window.addEventListener('keyup', showCustom)
 window.addEventListener('keyup', showResults)
 window.addEventListener('keyup', resetResults)
 resetBtn.addEventListener('click', reset)
