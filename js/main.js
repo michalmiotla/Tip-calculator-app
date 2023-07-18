@@ -92,7 +92,7 @@ const showCustom = () => {
 	})
 }
 
-const resetResults = () => {
+const handleResetBtn = () => {
 	if (parseFloat(billInput.value) == 0 || parseFloat(peopleInput.value) == 0) {
 		resetBtn.setAttribute('disabled', '')
 	} else {
@@ -107,9 +107,13 @@ const reset = () => {
 	tipValue.textContent = '$0.00'
 	totalValue.textContent = '$0.00'
 	resetBtn.setAttribute('disabled', '')
+	billSpan.textContent = ''
+	billInput.classList.remove('error')
+	peopleSpan.textContent = ''
+	peopleInput.classList.remove('error')
 }
 
 window.addEventListener('keyup', showCustom)
 window.addEventListener('keyup', showResults)
-window.addEventListener('keyup', resetResults)
+window.addEventListener('keyup', handleResetBtn)
 resetBtn.addEventListener('click', reset)
